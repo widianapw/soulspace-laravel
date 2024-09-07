@@ -9,6 +9,7 @@
         "dotswan/filament-map-picker": "^1.2",
         "filament/filament": "^3.2",
         "guzzlehttp/guzzle": "^7.2",
+        "kreait/laravel-firebase": "^5.9",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Enums\SenderTypeEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChatRequest;
+use App\Http\Resources\GeneralResource;
 use Illuminate\Http\Request;
 use LucianoTonet\GroqPHP\Groq;
 
@@ -21,7 +22,7 @@ class ChatController extends Controller
     {
         $chatroomId = auth()->user()->chatRoom->id;
         $messages = \App\Models\ChatRoomMessage::where('chat_room_id', $chatroomId)->latest()->get();
-        return $messages;
+        return GeneralResource::collection($messages);
     }
 
     public function postChat(ChatRequest $request)
@@ -33,6 +34,6 @@ class ChatController extends Controller
             'sender_type' => SenderTypeEnum::USER->value
         ]);
 
-        return $message;
+        return new GeneralResource($message);
     }
 }

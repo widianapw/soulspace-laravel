@@ -7,6 +7,7 @@ use App\Filament\Resources\PsychologistResource\RelationManagers;
 use App\Models\Psychologist;
 use Filament\Forms;
 use Dotswan\MapPicker\Fields\Map;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Form;
 use Filament\Forms\Set;
 use Filament\Resources\Resource;
@@ -27,6 +28,11 @@ class PsychologistResource extends Resource
             ->schema([
                 Forms\Components\Section::make()
                     ->schema([
+                        SpatieMediaLibraryFileUpload::make('image')
+                            ->collection('image')
+                            ->maxSize(512)
+                            ->image()
+                        ,
                         Forms\Components\TextInput::make("name")
                             ->placeholder("Name")
                             ->required(),

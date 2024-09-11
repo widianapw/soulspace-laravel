@@ -22,6 +22,7 @@ class PsychologistResource extends JsonResource
             'address' => $this['address'],
             'latitude' => $this['latitude'],
             'longitude' => $this['longitude'],
+            'image_url' => $this['image_url']
         ];
     }
 }

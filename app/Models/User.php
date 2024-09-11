@@ -14,6 +14,8 @@ class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $with = ['chatRoom'];
+
     /**
      * The attributes that are mass assignable.
      *

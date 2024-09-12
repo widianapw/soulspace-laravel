@@ -35,4 +35,11 @@ class ChatController extends Controller
 
         return new GeneralResource($message);
     }
+
+    public function resetChat()
+    {
+        $chatroomId = auth()->user()->chatRoom->id;
+        \App\Models\ChatRoomMessage::where('chat_room_id', $chatroomId)->delete();
+        return new GeneralResource([]);
+    }
 }

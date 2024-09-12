@@ -28,5 +28,6 @@ Route::middleware(["auth:sanctum"])->group(function () {
 
     Route::post('/chat', [\App\Http\Controllers\Api\ChatController::class, "postChat"])->name("chat.post");
     Route::get('/chat', [\App\Http\Controllers\Api\ChatController::class, "get"])->name("chat.get");
+    Route::post("/chat/reset", [\App\Http\Controllers\Api\ChatController::class, "resetChat"])->name("chat.reset");
 });
 

@@ -21,7 +21,7 @@ class ChatController extends Controller
     public function get(Request $request)
     {
         $chatroomId = auth()->user()->chatRoom->id;
-        $messages = \App\Models\ChatRoomMessage::where('chat_room_id', $chatroomId)->latest()->get();
+        $messages = \App\Models\ChatRoomMessage::where('chat_room_id', $chatroomId)->get();
         return GeneralResource::collection($messages);
     }
 

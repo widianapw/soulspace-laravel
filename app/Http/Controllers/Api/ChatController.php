@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ChatRequest;
 use App\Http\Resources\GeneralResource;
 use Illuminate\Http\Request;
-use LucianoTonet\GroqPHP\Groq;
 
 class ChatController extends Controller
 {

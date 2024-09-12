@@ -31,18 +31,35 @@ class ChatObserver
 
         if ($chatRoomMessage->sender_type == SenderTypeEnum::USER) {
             $groq = new Groq();
+            $oldMessages = ChatRoomMessage::where('chat_room_id', $chatRoomMessage->chat_room_id)->get();
+            $messages = [
+                [
+                    'role' => 'system',
+                    'content' => "Anda adalah psikolog yang berpengalaman dan bertugas untuk menjadi teman bicara. Gunakan bahasa kasual dan mudah dimengerti anak muda. jawab dengan singkat dan jelas",
+                ]
+            ];
+            foreach ($oldMessages as $oldMessage) {
+                if ($oldMessage->sender_type == SenderTypeEnum::USER) {
+                    $messages[] = [
+                        'role' => 'user',
+                        'content' => $oldMessage->message
+                    ];
+                }else {
+                    $messages[] = [
+                        'role' => 'assistant',
+                        'content' => $oldMessage->message
+                    ];
+                }
+            }
+
+            $messages[] = [
+                'role' => 'user',
+                'content' => $chatRoomMessage->message
+            ];
+
             $response = $groq->chat()->completions()->create([
                 'model' => 'gemma-7b-it',
-                'messages' => [
-                    [
-                        'role' => 'system',
-                        'content' => "Anda adalah psikolog yang berpengalaman dan bertugas untuk menjadi teman bicara. Gunakan bahasa kasual dan mudah dimengerti anak muda. jawab dengan singkat dan jelas",
-                    ],
-                    [
-                        'role' => 'user',
-                        'content' => $chatRoomMessage->message
-                    ]
-                ],
+                'messages' => $messages,
             ]);
 
             ChatRoomMessage::create([

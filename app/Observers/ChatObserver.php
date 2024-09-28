@@ -20,14 +20,14 @@ class ChatObserver
      */
     public function created(ChatRoomMessage $chatRoomMessage): void
     {
-        $this->database->getReference('rooms/' . $chatRoomMessage->chat_room_id . '/'. $chatRoomMessage->id)
-            ->set([
-                'id' => $chatRoomMessage->id,
-                'chat_room_id' => $chatRoomMessage->chat_room_id,
-                'sender_type' => $chatRoomMessage->sender_type,
-                'message' => $chatRoomMessage->message,
-                'created_at' => $chatRoomMessage->created_at
-            ]);
+//        $this->database->getReference('rooms/' . $chatRoomMessage->chat_room_id . '/'. $chatRoomMessage->id)
+//            ->set([
+//                'id' => $chatRoomMessage->id,
+//                'chat_room_id' => $chatRoomMessage->chat_room_id,
+//                'sender_type' => $chatRoomMessage->sender_type,
+//                'message' => $chatRoomMessage->message,
+//                'created_at' => $chatRoomMessage->created_at
+//            ]);
 
         if ($chatRoomMessage->sender_type == SenderTypeEnum::USER) {
             $groq = new Groq();

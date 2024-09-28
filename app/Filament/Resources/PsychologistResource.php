@@ -22,6 +22,11 @@ class PsychologistResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
 
+//    protected static ?string $navigationLabel = "Lokasi";
+//
+//    protected static ?string $pluralLabel= "Lokasi";
+//    protected static ?string $label = "Lokasi";
+
     public static function form(Form $form): Form
     {
         return $form

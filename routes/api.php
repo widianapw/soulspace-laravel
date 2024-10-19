@@ -25,6 +25,7 @@ Route::post("/register", [\App\Http\Controllers\Api\AuthController::class, "regi
 
 Route::middleware(["auth:sanctum"])->group(function () {
     Route::get('/psychologist', [\App\Http\Controllers\Api\PsychologistController::class, "get"])->name("psychologist.get");
+    Route::get("/psychologist/route", [\App\Http\Controllers\Api\PsychologistController::class, "getRoute"])->name("psychologist.route");
 
     Route::post('/chat', [\App\Http\Controllers\Api\ChatController::class, "postChat"])->name("chat.post");
     Route::get('/chat', [\App\Http\Controllers\Api\ChatController::class, "get"])->name("chat.get");
